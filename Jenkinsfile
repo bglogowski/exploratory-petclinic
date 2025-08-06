@@ -23,8 +23,8 @@ pipeline
       steps {
         echo "Getting Exploratory Testing Repo"
         git(
-        url:'git@github.com:ochoadevops/petclinic-test-exploratory.git',
-        credentialsId: 'exploratory',
+        url:'git@github.com:bglogowski/exploratory-petclinic.git',
+        credentialsId: 'myKey',
         branch: "main"
         )
      }
@@ -81,9 +81,9 @@ pipeline
 
                  sh 'pwd'
                  sh 'ls -l'
-                 sh '/usr/local/bin/terraform init -input=false'
-                 sh '/usr/local/bin/terraform plan'
-                 sh '/usr/local/bin/terraform apply -auto-approve'
+                 sh '/usr/bin/terraform init -input=false'
+                 sh '/usr/bin/terraform plan'
+                 sh '/usr/bin/terraform apply -auto-approve'
               
               }
            }
@@ -116,7 +116,7 @@ pipeline
               script {
                  // Test completed, destroy environment
                  echo "Test completed, destroying environment"
-                 sh '/usr/local/bin/terraform destroy -auto-approve'
+                 sh '/usr/bin/terraform destroy -auto-approve'
               }
           }
       }
