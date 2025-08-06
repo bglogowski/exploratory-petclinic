@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "petclinic_security_group" {
-  vpc_id=data.aws_vpc.selected.id
+  vpc_id = "vpc-07688c3e3dc8ae718"
   name = "access-https-${var.build_id}"
   ingress {
     from_port   = 443
@@ -54,6 +54,7 @@ resource "aws_instance" "test-instance" {
   ami           = data.aws_ami.instance_ami.id
   instance_type = "t2.micro"
   key_name   = "cse-41380"
+  subnet_id  = "subnet-0b156d4dbfbde5694"
   vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
 
   tags = {
